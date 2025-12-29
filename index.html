@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Quiz</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: blue;
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            padding: 20px;
+            width: 320px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        h3 {
+            color: #333333;
+        }
+
+        p {
+            color: #555555;
+        }
+
+        button {
+            display: block;
+            width: 90%;
+            margin: 6px auto;
+            padding: 6px;
+            background-color: white;
+            border: 1px solid #99bbff;
+            cursor: pointer;
+    
+
+        button:hover {
+            background-color: #d6e6ff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h3>Simple Quiz</h3>
+    <p id="question"></p>
+
+    <button onclick="checkAnswer(0)" id="opt0"></button>
+    <button onclick="checkAnswer(1)" id="opt1"></button>
+    <button onclick="checkAnswer(2)" id="opt2"></button>
+    <button onclick="checkAnswer(3)" id="opt3"></button>
+
+    <br>
+    <button onclick="nextQuestion()">Next</button>
+</div>
+
+<script>
+var questions = [
+    {
+        q: "What does HTML stand for?",
+        o: ["Hyper Text Markup Language", "High Text Machine Language", "Hyper Tool Language", "Home Text Language"],
+        a: 0
+    },
+    {
+        q: "Which language is used for styling?",
+        o: ["HTML", "CSS", "Java", "Python"],
+        a: 1
+    },
+    {
+        q: "Which language runs in browser?",
+        o: ["C", "Java", "JavaScript", "Python"],
+        a: 2
+    }
+];
+
+var index = 0;
+var score = 0;
+
+document.getElementById("question").innerText = questions[index].q;
+document.getElementById("opt0").innerText = questions[index].o[0];
+document.getElementById("opt1").innerText = questions[index].o[1];
+document.getElementById("opt2").innerText = questions[index].o[2];
+document.getElementById("opt3").innerText = questions[index].o[3];
+
+function checkAnswer(choice) {
+    if (choice == questions[index].a) {
+        alert("Correct");
+        score = score + 1;
+    } else {
+        alert("Wrong");
+    }
+}
+
+function nextQuestion() {
+    index = index + 1;
+
+    if (index < questions.length) {
+        document.getElementById("question").innerText = questions[index].q;
+        document.getElementById("opt0").innerText = questions[index].o[0];
+        document.getElementById("opt1").innerText = questions[index].o[1];
+        document.getElementById("opt2").innerText = questions[index].o[2];
+        document.getElementById("opt3").innerText = questions[index].o[3];
+    } else {
+        document.body.innerHTML =
+            "<h2 style='color:#333;'>Your Score: " +
+            score + "/" + questions.length +
+            "</h2>";
+    }
+}
+</script>
+
+</body>
+</html>
